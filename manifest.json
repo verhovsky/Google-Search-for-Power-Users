@@ -3,9 +3,9 @@
   "description": "Search the internet without leaving the comfort of your keyboard.",
   "version": "1.1",
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png" },
+    "16": "img/icon16.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png" },
   "content_scripts": [
     {
       // http://www.google.com/supported_domains
