@@ -1,8 +1,8 @@
-# Google Search Power User Edition #
+# Google Search for Power Users #
 
 Strip away everything from Google Search except the search bar and results. Make the Tab key practical.
 
-Use Tab to navigate links, and `/` to google.
+Use `Tab` to navigate links, and `/` to google.
 
 ![Screenshot](img/screenshot.png)
 
@@ -12,9 +12,9 @@ If you use [Personal Blocklist (by Google)](https://chrome.google.com/webstore/d
 
 ## todo ##
 
-Sometimes the footer will not be pushed all the way to the bottom when the window is maximized. To make debugging even funner, it gets pushed whenever I open the dev console.
-Will add options to not hide certain elements (blocklist buttons and G+ notifications)
-Might add ability to navigate with `hjkl` someday
+- Sometimes the footer will not be pushed all the way to the bottom when the window is maximized. To make debugging even funner, it gets pushed whenever I open the dev console.
+- Will add options to not hide certain elements (blocklist buttons and G+ notifications)
+- Might add ability to navigate with `hjkl` someday
 
 ## contributing ##
 
