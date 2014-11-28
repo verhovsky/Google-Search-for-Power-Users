@@ -1,0 +1,83 @@
+/* google logo */
+.gb_Ma {
+    display: none;
+}
+
+
+/* search bar */
+#gbqfqw {
+    border: none;
+}
+/* button */
+#gbqfbw > button {
+    background: #FFFFFF;
+}
+#gbqfbw > button:hover {
+    box-shadow: none;
+}
+/* google voice icon */
+.gsst_b.sbib_c {
+    display: none;
+}
+
+/* everything right of search bar */
+.gb_Sb.gb_Pc > div:first-child {
+    display: none;
+}
+
+/* Images, Maps etc. options under search bar */
+#top_nav {
+    display: none;
+}
+
+/* result count, speed status */
+#appbar {
+    display: none;
+}
+
+
+
+/* report images */
+#irl_r {
+    display: none;
+}
+
+/* redundant "more images for" link */
+.irg-footer {
+    display: none;
+}
+
+
+
+/* searches related to, maybe something else? */
+#extrares {
+    display: none;
+}
+
+/* gooooooooogle above more pages, it was a hard decision to leave the actual page numbers */
+span.gbil {
+    display: none;
+}
+
+/* "help, send feedback, privacy tos" */
+.fbar {
+    display: none;
+}
+/* whole footer bar */
+#fbar {
+    padding-bottom: 18px;
+}
+
+
+
+/* artifact from Personal Blocklist (by Google) extension. Defeats the purpose of this extension. You need to add items to the blocklist then enable this extension */
+.blockLink, #blocklistNotification {
+    display: none;
+}
+
+
+/* just in case
+.gb_Qa {
+    display: none;
+}
+*/
