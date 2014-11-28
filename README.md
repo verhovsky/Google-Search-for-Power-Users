@@ -8,7 +8,7 @@ Use `Tab` to navigate links, and `/` to google.
 
 ## note ##
 
-If you use [Personal Blocklist](https://chrome.google.com/webstore/detail/nolijncfnkgaikbjbdaogikpmpbdcdef), and you want to block a domain, you will have to disable this extension in __Extensions --> Google Search Power User Edition --> Enabled__ (uncheck the box).
+If you use [Personal Blocklist](https://chrome.google.com/webstore/detail/nolijncfnkgaikbjbdaogikpmpbdcdef), and you want to block a domain, you will have to disable this extension in __Extensions --> Google Search for Power Users --> Enabled__ (uncheck the box).
 
 ## todo ##
 
