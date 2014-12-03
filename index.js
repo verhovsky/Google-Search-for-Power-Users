@@ -1,13 +1,9 @@
-var searchBarId = 'gbqfq';
-var searchBar = document.getElementById(searchBarId);
-
-document.getElementById(searchBarId).tabIndex = -1;
-
-document.querySelector('[aria-label="Google Search"]').tabIndex = -1;
-document.querySelector('[title="Go to Google Home"]').tabIndex = -1;
-
-// extraActionsDropDown, secondaryWebpageLinks, webpagePathElements, videoThumbnails, imageThumbnails
-var queries = ['a.ab_button', 'a.fl', 'cite._Rm.bc > a', 'div.th._lyb._YQd > a', 'div.bicc > a']
+// googleLogo, homepageLink, extraActionsDropDown, secondaryWebpageLinks,
+// webpagePathElements, videoThumbnails, imageThumbnails.
+// not sure if homepageLink is still necessary
+var queries = ['[aria-label="Google Search"]', '[title="Go to Google Home"]',
+               'a.ab_button', 'a.fl', 'cite._Rm.bc > a', 'div.th._lyb._YQd > a',
+               'div.bicc > a'];
 for (var i=0; i<queries.length; i++) {
     var elems = document.querySelectorAll(queries[i]);
     for (var j=0; j<elems.length; j++) {
@@ -15,7 +11,14 @@ for (var i=0; i<queries.length; i++) {
     }
 }
 
+var searchBarId = 'gbqfq';
+var searchBar = document.getElementById(searchBarId);
 
+searchBar.tabIndex = -1;
+
+// press / to focus on the searchbar. Not using .select() because Cmd-L in
+// chrome already does that. But, right now .focus() puts you at the beginning
+// of search query, might change this to be the front
 document.onkeypress = function (e) {
     e = e || window.event;
     var forwardSlash = 47;
