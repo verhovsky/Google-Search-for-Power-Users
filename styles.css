@@ -30,7 +30,7 @@
     display: none;
 }
 
-/* result count, speed status */
+/* result count, load time stats */
 #appbar {
     display: none;
 }
@@ -54,7 +54,8 @@
     display: none;
 }
 
-/* gooooooooogle above more pages, it was a hard decision to leave the actual page numbers */
+/* gooooooooogle above more pages, it was a hard decision to leave the actual
+   page numbers */
 span.gbil {
     display: none;
 }
@@ -70,7 +71,9 @@ span.gbil {
 
 
 
-/* artifact from Personal Blocklist (by Google) extension. Defeats the purpose of this extension. You need to add items to the blocklist then enable this extension */
+/* artifact from Personal Blocklist (by Google) extension. Defeats the purpose
+   of this extension. You need to add items to the blocklist then enable this
+   extension */
 .blockLink, #blocklistNotification {
     display: none;
 }
