@@ -20,8 +20,11 @@
     display: none;
 }
 
-/* everything right of search bar */
-.gb_Sb.gb_Pc > div:first-child {
+/* everything right of search bar.
+   Google changes the classes constantly, so might change all the css to be in
+   this format, assuming page structure changes less frequently than class names
+ */
+body > div:nth-child(4) > div:first-child > div:first-child > div:first-child {
     display: none;
 }
 
