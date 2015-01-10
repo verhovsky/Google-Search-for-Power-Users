@@ -6,6 +6,14 @@ Use `j/k` to navigate links, and `/` to google. `n` to go to the next page of re
 
 ![Screenshot](img/screenshot.png)
 
+## installing ##
+
+- `git clone https://github.com/BorisVerk/Google-Search-for-Power-Users`
+- Go to chrome extensions
+- Enable `Developer Mode`
+- Click `Load Unpacked Extension`
+- Select the base folder of the extension (should be `Google-Search-for-Power-Users`)
+
 ## note ##
 
 If you use [Personal Blocklist](https://chrome.google.com/webstore/detail/nolijncfnkgaikbjbdaogikpmpbdcdef), and you want to block a domain, you will have to disable this extension in __Extensions --> Google Search for Power Users --> Enabled__ (uncheck the box).
@@ -17,4 +25,4 @@ If you use [Personal Blocklist](https://chrome.google.com/webstore/detail/nolijn
 
 ## contributing ##
 
-I probably missed a few links that should not be highlighted when you press Tab. Open an issue if you find something I missed, make sure to include the search query.
+Open an issue if you find something I missed, make sure to include the search query.
