@@ -35,6 +35,8 @@ document.onkeypress = function (e) {
 
     var forwardSlash = 47; // focus on search box
 
+    var nKey = 110; // go to next page of results
+    // no p key because you should press backspace
 
     //console.log(e.keyCode);
 
@@ -52,11 +54,12 @@ document.onkeypress = function (e) {
     } else if (e.keyCode === forwardSlash  &&  document.activeElement !== searchBar) {
         e.preventDefault();
         searchBar.focus();
-    } else if (e.keyCode === forwardSlash  &&  document.activeElement !== searchBar) {
+
+    } else if (e.keyCode === nKey  &&  document.activeElement !== searchBar) {
         var nextPage = document.querySelector('span[style="display:block;margin-left:53px"]');
         if (nextPage) {
             nextPage.click();
         }
-    }
 
+    }
 };
