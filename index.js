@@ -7,7 +7,7 @@ var queries = ['[aria-label="Google Search"]', '[title="Go to Google Home"]',
 for (var i=0; i<queries.length; i++) {
     var elems = document.querySelectorAll(queries[i]);
     for (var j=0; j<elems.length; j++) {
-        elems[j].tabIndex = -1;
+        elems[j].tabIndex = -1; // pressing tab doesn't select the above link
     }
 }
 
@@ -16,15 +16,47 @@ var searchBar = document.getElementById(searchBarId);
 
 searchBar.tabIndex = -1;
 
-// press / to focus on the searchbar. Not using .select() because Cmd-L in
-// chrome already does that. But, right now .focus() puts you at the beginning
-// of search query, might change this to be the front
+var googleLinksSelector = '.r > a'
+var links = document.querySelectorAll(googleLinksSelector)
+
+var currentLinkIndex = 0;
+
+if (links.length) {
+    links[0].focus();
+    links[currentLinkIndex].focus();
+}
+
+
 document.onkeypress = function (e) {
     e = e || window.event;
-    var forwardSlash = 47;
 
-    if (e.keyCode === forwardSlash  &&  document.activeElement !== searchBar) {
+    var jKey = 106; // move up in torrent list
+    var kKey = 107; // move down in torrent list
+
+    var forwardSlash = 47; // focus on search box
+
+
+    //console.log(e.keyCode);
+
+
+    if (e.keyCode === jKey && currentLinkIndex < links.length-1 &&  document.activeElement !== searchBar) {
+        e.preventDefault();
+        currentLinkIndex += 1;
+        links[currentLinkIndex].focus()
+
+    } else if (e.keyCode === kKey && currentLinkIndex > 0 &&  document.activeElement !== searchBar) {
+        e.preventDefault();
+        currentLinkIndex += -1;
+        links[currentLinkIndex].focus()
+
+    } else if (e.keyCode === forwardSlash  &&  document.activeElement !== searchBar) {
         e.preventDefault();
         searchBar.focus();
+    } else if (e.keyCode === forwardSlash  &&  document.activeElement !== searchBar) {
+        var nextPage = document.querySelector('span[style="display:block;margin-left:53px"]');
+        if (nextPage) {
+            nextPage.click();
+        }
     }
+
 };
