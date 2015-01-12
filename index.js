@@ -55,6 +55,13 @@ document.onkeypress = function (e) {
         e.preventDefault();
         searchBar.focus();
 
+        // reseting the text puts the cursor at the end of the text field,
+        // which I've found to the the desired behaviour more often than
+        // the default behavior of .focus(), which puts it at the beginning
+        var temp = searchBar.value;
+        searchBar.value = '';
+        searchBar.value = temp;
+
     } else if (e.keyCode === nKey  &&  document.activeElement !== searchBar) {
         var nextPage = document.querySelector('span[style="display:block;margin-left:53px"]');
         if (nextPage) {
