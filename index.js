@@ -7,7 +7,7 @@ var queries = ['[aria-label="Google Search"]', '[title="Go to Google Home"]',
 for (var i=0; i<queries.length; i++) {
     var elems = document.querySelectorAll(queries[i]);
     for (var j=0; j<elems.length; j++) {
-        elems[j].tabIndex = -1; // pressing tab doesn't select the above link
+        elems[j].tabIndex = -1; // pressing tab won't select these links
     }
 }
 
@@ -20,9 +20,7 @@ var googleLinksSelector = '.r > a'
 var links = document.querySelectorAll(googleLinksSelector)
 
 var currentLinkIndex = 0;
-
 if (links.length) {
-    links[0].focus();
     links[currentLinkIndex].focus();
 }
 
@@ -30,8 +28,8 @@ if (links.length) {
 document.onkeypress = function (e) {
     e = e || window.event;
 
-    var jKey = 106; // move up in torrent list
-    var kKey = 107; // move down in torrent list
+    var jKey = 106; // move up in list of links
+    var kKey = 107; // move down in list of links
 
     var forwardSlash = 47; // focus on search box
 
