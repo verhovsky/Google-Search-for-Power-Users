@@ -1,19 +1,16 @@
 /* google logo */
-div#mngb > div:first-child > div:first-child > div:nth-child(2) > div {
-    display: none;
+#logo {
+    display: none !important;
 }
 
 
 /* search bar */
-#gbqfqw {
+#sfdiv {
     border: none;
 }
 /* button */
-#gbqfbw > button {
-    background: #FFFFFF;
-}
-#gbqfbw > button:hover {
-    box-shadow: none;
+#sbds {
+  display: none;
 }
 /* google voice icon */
 .gsst_b.sbib_c {
@@ -24,7 +21,7 @@ div#mngb > div:first-child > div:first-child > div:nth-child(2) > div {
    Google changes the classes constantly, so might change all the css to be in
    this format, assuming page structure changes less frequently than class names
  */
-body > div#mngb > div:first-child > div:first-child > div:first-child {
+body > div#searchform > div {
     display: none;
 }
 

@@ -11,7 +11,7 @@ for (var i=0; i<queries.length; i++) {
     }
 }
 
-var searchBarId = 'gbqfq';
+var searchBarId = 'lst-ib';
 var searchBar = document.getElementById(searchBarId);
 
 searchBar.tabIndex = -1;
