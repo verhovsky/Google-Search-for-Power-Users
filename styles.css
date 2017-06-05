@@ -1,26 +1,30 @@
 /* google logo */
-#logo {
+.logocont {
     display: none !important;
 }
+/* hide the white space left by the logo */
+.tsf-p {
+    padding-left: 20px !important;
+}
+#center_col {
+    margin-left: 20px !important;
+}
 
-
+/* grey top section of search page */
+.sfbgx {
+    border: none !important;
+}
 /* search bar */
-#sfdiv {
-    border: none;
+.sbibod {
+    box-shadow: none !important;
 }
-/* button */
-#sbds {
-  display: none;
-}
-/* google voice icon */
-.gsst_b.sbib_c {
+
+/* google voice icon, magnifying glass icon */
+.gsst_b.sbib_c, .sbico-c {
     display: none;
 }
 
-/* everything right of search bar.
-   Google changes the classes constantly, so might change all the css to be in
-   this format, assuming page structure changes less frequently than class names
- */
+/* everything right of search bar.  */
 body > div#searchform > div {
     display: none;
 }
@@ -54,9 +58,8 @@ body > div#searchform > div {
     display: none;
 }
 
-/* gooooooooogle above more pages, it was a hard decision to leave the actual
-   page numbers */
-span.gbil {
+/* gooooooooogle above more pages */
+span.csb {
     display: none;
 }
 
@@ -69,18 +72,19 @@ span.gbil {
     padding-bottom: 18px;
 }
 
+/*
+ * the green text that is the link the result goes to
+ * also plug for https://github.com/LittleLightLittleFire/link-fixer
+ */
+._SWb.kv.f > ._Rm {
+  color: black;
+}
 
-
-/* artifact from Personal Blocklist (by Google) extension. Defeats the purpose
-   of this extension. You need to add items to the blocklist then enable this
-   extension */
+/* artifact from google's Personal Blocklist extension */
 .blockLink, #blocklistNotification {
     display: none;
 }
 
-
-/* just in case
-.gb_Qa {
-    display: none;
+* {
+    font-family: sans-serif;
 }
-*/

@@ -1,70 +1,63 @@
+let searchBarSelector = '#lst-ib';
+let searchBar = document.querySelector(searchBarSelector);
+searchBar.tabIndex = -1;
+
 // googleLogo, homepageLink, extraActionsDropDown, secondaryWebpageLinks,
 // webpagePathElements, videoThumbnails, imageThumbnails.
 // not sure if homepageLink is still necessary
-var queries = ['[aria-label="Google Search"]', '[title="Go to Google Home"]',
-               'a.ab_button', 'a.fl', 'cite._Rm.bc > a', 'div.th._lyb._YQd > a',
-               'div.bicc > a'];
-for (var i=0; i<queries.length; i++) {
-    var elems = document.querySelectorAll(queries[i]);
-    for (var j=0; j<elems.length; j++) {
-        elems[j].tabIndex = -1; // pressing tab won't select these links
+let elementsToIgonre = ['[aria-label="Google Search"]', '[title="Go to Google Home"]',
+                        'a.ab_button', 'a.fl', 'cite._Rm.bc > a', 'div.th._lyb._YQd > a',
+                        'div.bicc > a'].concat([searchBarSelector]);
+for (let selector of elementsToIgonre) {
+    for (let elem of document.querySelectorAll(selector)) {
+        elem.tabIndex -= 1;
     }
 }
 
-var searchBarId = 'lst-ib';
-var searchBar = document.getElementById(searchBarId);
+let resultsSelector = '.r > a'
+let links = document.querySelectorAll(resultsSelector)
 
-searchBar.tabIndex = -1;
+let currentLinkIndex = 0;
+links[currentLinkIndex].focus();
 
-var googleLinksSelector = '.r > a'
-var links = document.querySelectorAll(googleLinksSelector)
+document.onkeypress = (e) => {
+    if (document.activeElement === searchBar) { return }
 
-var currentLinkIndex = 0;
-if (links.length) {
-    links[currentLinkIndex].focus();
-}
+    e.preventDefault();
 
+    let jKey = 106; // move up in list of links
+    let kKey = 107; // move down in list of links
 
-document.onkeypress = function (e) {
-    e = e || window.event;
+    let forwardSlash = 47; // focus on search box
 
-    var jKey = 106; // move up in list of links
-    var kKey = 107; // move down in list of links
+    let nKey = 110; // go to next page of results
+    let pKey = 112; // go to previous page
 
-    var forwardSlash = 47; // focus on search box
+    switch (e.keyCode) {
+        case jKey:
+            currentLinkIndex = Math.min(currentLinkIndex+1, links.length-1);
+            links[currentLinkIndex].focus();
+            break;
 
-    var nKey = 110; // go to next page of results
-    // no p key because you should press backspace
+        case kKey:
+            currentLinkIndex = Math.max(currentLinkIndex-1, 0);
+            links[currentLinkIndex].focus();
+            break;
 
-    //console.log(e.keyCode);
+        case forwardSlash:
+            searchBar.focus();
+            // put the cursor at the end of the input field instead of
+            // the beginning
+            searchBar.setSelectionRange(
+                searchBar.value.length, searchBar.value.length)
+            break;
 
+        case nKey:
+            let nextPage = document.querySelector('span[style="display:block;margin-left:53px"]').click();
+            break;
 
-    if (e.keyCode === jKey && currentLinkIndex < links.length-1 &&  document.activeElement !== searchBar) {
-        e.preventDefault();
-        currentLinkIndex += 1;
-        links[currentLinkIndex].focus()
-
-    } else if (e.keyCode === kKey && currentLinkIndex > 0 &&  document.activeElement !== searchBar) {
-        e.preventDefault();
-        currentLinkIndex += -1;
-        links[currentLinkIndex].focus()
-
-    } else if (e.keyCode === forwardSlash  &&  document.activeElement !== searchBar) {
-        e.preventDefault();
-        searchBar.focus();
-
-        // reseting the text puts the cursor at the end of the text field,
-        // which I've found to the the desired behaviour more often than
-        // the default behavior of .focus(), which puts it at the beginning
-        var temp = searchBar.value;
-        searchBar.value = '';
-        searchBar.value = temp;
-
-    } else if (e.keyCode === nKey  &&  document.activeElement !== searchBar) {
-        var nextPage = document.querySelector('span[style="display:block;margin-left:53px"]');
-        if (nextPage) {
-            nextPage.click();
-        }
-
+        case pKey:
+            window.history.back(); // good enough.
+            break;
     }
 };
