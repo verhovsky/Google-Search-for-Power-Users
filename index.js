@@ -1,9 +1,5 @@
-let searchBarSelector = '#lst-ib';
-let searchBar = document.querySelector(searchBarSelector);
+let searchBar = document.getElementById('lst-ib');
 searchBar.tabIndex = -1;
-
-var new_element = searchBar.cloneNode(true);
-searchBar.parentNode.replaceChild(new_element, searchBar);
 
 let elementsToIgonre = [
     // logo
@@ -23,54 +19,55 @@ let elementsToIgonre = [
 ];
 for (let selector of elementsToIgonre) {
     for (let elem of document.querySelectorAll(selector)) {
-        elem.tabIndex = '-1';
+        elem.tabIndex = -1;
     }
 }
 
-let resultsSelector = '.r > a';
-let links = document.querySelectorAll(resultsSelector);
+// select only search results, not suggested answers or suggested questions
+// personal blocklist adds the "blocked" class
+let searchResultSelector = '._NId > .srg > .g:not(.blocked) > div > .rc > .r > a';
+let searchResults = document.querySelectorAll(searchResultSelector);
+let focusedSearchIndex = 0;
+searchResults[focusedSearchIndex].focus();
 
-let currentLinkIndex = 0;
-links[currentLinkIndex].focus();
+// wait for Personal Blacklist extension to do its work
+// https://chrome.google.com/webstore/detail/personal-blocklist-by-goo/nolijncfnkgaikbjbdaogikpmpbdcdef
+// TODO: detect that personal blocklist extension ran programmatically
+setTimeout(() => {
+    searchResults = document.querySelectorAll(searchResultSelector);
+    // while we were waiting for the blacklist extension, the user could've started editing the
+    // search query.
+    if (!document.activeElement.isSameNode(searchBar)) {
+        searchResults[focusedSearchIndex].focus();
+    }
+
+    // automatically click the first result, unless you got to the results page by pressing back
+    if (window.performance.navigation.type !== window.performance.navigation.TYPE_BACK_FORWARD) {
+        searchResults[focusedSearchIndex].click();
+    }
+}, 600);
 
 document.onkeypress = (e) => {
-    if (document.activeElement === searchBar) { return; }
+    if (document.activeElement.isSameNode(searchBar)) {
+        return;
+    }
 
-    e.preventDefault();
+    if (e.key === 'j' && focusedSearchIndex < searchResults.length-1) {
+        focusedSearchIndex++;
 
-    let jKey = 106; // move up in list of links
-    let kKey = 107; // move down in list of links
+        searchResults[focusedSearchIndex].focus();
+        e.preventDefault();
+    } else if (e.key === 'k' && focusedSearchIndex > 0) {
+        focusedSearchIndex--;
 
-    let forwardSlash = 47; // focus on search box
+        searchResults[focusedSearchIndex].focus();
+        e.preventDefault();
+    }
 
-    let nKey = 110; // go to next page of results
-    let pKey = 112; // go to previous page
-
-    switch (e.keyCode) {
-        case jKey:
-            currentLinkIndex = Math.min(currentLinkIndex+1, links.length-1);
-            links[currentLinkIndex].focus();
-            break;
-
-        case kKey:
-            currentLinkIndex = Math.max(currentLinkIndex-1, 0);
-            links[currentLinkIndex].focus();
-            break;
-
-        case forwardSlash:
-            searchBar.focus();
-            // put the cursor at the end of the input field instead of
-            // the beginning
-            searchBar.setSelectionRange(
-                searchBar.value.length, searchBar.value.length);
-            break;
-
-        case nKey:
-            let nextPage = document.querySelector('span[style="display:block;margin-left:53px"]').click();
-            break;
-
-        case pKey:
-            window.history.back(); // good enough.
-            break;
+    if (e.key === '/') {
+        searchBar.focus();
+        // put the cursor at the end of the input field instead of the beginning
+        searchBar.setSelectionRange(searchBar.value.length, searchBar.value.length);
+        e.preventDefault();
     }
 };
